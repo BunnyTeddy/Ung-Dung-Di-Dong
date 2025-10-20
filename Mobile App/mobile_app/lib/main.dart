@@ -7,10 +7,16 @@ import 'providers/plant_provider.dart';
 import 'providers/diary_provider.dart';
 import 'providers/iot_provider.dart';
 import 'providers/notification_provider.dart';
-
+import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
 void main() async {
   // Ensure Flutter bindings are initialized
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
+  runApp(const MyApp());
   
   // Initialize Firebase
   await FirebaseService.initialize();
